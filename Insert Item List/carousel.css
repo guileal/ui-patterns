@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F1F1F1;
+    height: 100vh;
+}
+
+ul {
+    height: 80%;
+    background: white;
+}
+
+#form {
+    height: 20%;
+}
+
+input,
+button {
+    height: 36px;
+    font-size: 24px;
+    padding: 6px;
+}
+
+/* Patterns */
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.align-start {
+    align-items: start;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.padding {
+    padding: 2rem;
+}
