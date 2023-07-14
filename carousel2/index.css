@@ -1,0 +1,183 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --main-font: 'Poppins', sans-serif;
+    --h3-font-size: 48px;
+    --span-font-size: 24px;
+    --span-color: #E07517;
+    --paragraph-font-size: 18px;
+    --paragraph-color: #3A3D3D;
+}
+
+h3 {
+    font-family: var(--main-font);
+    font-size: var(--h3-font-size);
+}
+
+span {
+    font-family: var(--main-font);
+    font-size: var(--span-font-size);
+    /* Convert from pixels to rem */
+    color: var(--span-color);
+}
+
+p {
+    font-family: var(--main-font);
+    font-size: var(--paragraph-font-size);
+    /* Convert from pixels to rem */
+    color: var(--paragraph-color);
+    line-height: 2rem;
+}
+
+/* ⚠️ USE ONLY THE CODE BELOW ⚠️ */
+
+
+.carousel-container {
+    display: flex;
+    position: relative;
+
+    height: 80vh;
+    max-width: 1360px;
+
+    margin: auto;
+}
+
+
+/* 🟢 Photos Container */
+.photos-container {
+    display: flex;
+    align-items: start;
+    min-width: 50%;
+    max-width: 60%;
+    height: auto;
+    max-height: 100vh;
+    overflow: hidden;
+
+    /* gap: 1rem; */
+    /* border: 1px solid red; */
+
+}
+
+/* 🟠 Photos > Small */
+.small-photos { 
+    width: 20%;
+    height: 100%;
+    /* max-width: 20%; */
+    overflow: hidden scroll;
+    z-index: 99;
+
+}
+
+.small-photos .img-container {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+    height: 25%;
+    /* max-height: 25%; */
+    overflow: hidden;
+}
+
+.small-photos .img-container img {
+    /* padding-bottom: 0; */
+
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+/* .small-photos .img-container:not(:first-child) {
+    padding-top: 1rem;
+} */
+
+/* 🟠 Photos > large */
+.large-photo {
+    width: 80%;
+    max-width: 100%;
+    height: 100%;
+}
+
+.large-photo .img-container {
+    width: 100%;
+    height: 100%;
+    /* min-height: 100%;
+    min-width: 100%; */
+    /* padding: 1rem; */
+    /* border: 1px solid rgb(78, 255, 78); */
+}
+
+.large-photo .img-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: 2px solid blue;
+}
+
+/* 🟢 Info Container */
+.info-container {
+    padding: 3rem;
+    min-width: 50%;
+    border: 1px solid blue;
+}
+
+/* ⚪ Arrows ⬅ ➡️ */
+.nav-buttons-container {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-95%, 10%);
+    margin-right: 20px;
+
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 50%;
+    transition: background-color 400ms ease;
+    background-color: var(--paragraph-color);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transition: background-color 400ms ease;
+    background-color: var(--span-color);
+}
+
+.btn .material-icons {
+    color: white;
+    margin-right: 2px;
+}
+
+
+/* 🔴 Remove Scrollbar */
+.no-scrollbar * {
+    scrollbar-width: none;
+    /* Hide the scrollbar in Firefox */
+}
+
+.no-scrollbar * ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    /* Hide the scrollbar in webkit-based browsers */
+}
+
+
+/* 🔴 Remove exceding text */
+.text-limit {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
