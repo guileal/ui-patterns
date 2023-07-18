@@ -20,11 +20,11 @@ function updateContentSize(){
     container: ${container.offsetWidth}, 
     wrapper-items: ${wrapperItems.offsetWidth},
     items[0]: ${arrayItems[0].offsetWidth}`
-   
-    ItemOffsetLeft = arrayItems[1].offsetLeft - arrayItems[0].offsetLeft
+
+    itemWidth = arrayItems[1].offsetLeft - arrayItems[0].offsetLeft
     
     return {
-        ItemOffsetLeft
+        itemWidth
     }
 }
 
@@ -37,7 +37,6 @@ function previousUpdateArrayItems(){
 
     // get the last item in array
     let lastItem = arrayItems.length - 1
-    let lastItemOffSetLeft = lastItem.offsetLeft
     arrayItems[lastItem].after(tempItem)
 
     let marginLeft = parseInt(getComputedStyle(arrayItems[0]).marginLeft)
@@ -49,8 +48,9 @@ function previousUpdateArrayItems(){
 
 // 🎉 Listeners
 previousButton.addEventListener('click', ()=>{
-    let {ItemOffsetLeft} = updateContentSize()
-    arrayItems[0].style.marginLeft = `${-ItemOffsetLeft}px`
+    arrayItems[0].classList.remove('UI-fadeIn')
+    let {itemWidth} = updateContentSize()
+    arrayItems[0].style.marginLeft = `${-itemWidth}px`
 
     arrayItems[0].classList.add('UI-fadeOut')
     setTimeout(previousUpdateArrayItems,300)
@@ -60,9 +60,18 @@ previousButton.addEventListener('click', ()=>{
 })
 
 nextButton.addEventListener('click',()=>{
-    let {ItemOffsetLeft} = updateContentSize()
+    let {itemWidth} = updateContentSize()
+    let lastItem = arrayItems[arrayItems.length - 1]
+    
+    
+    arrayItems[0].before(lastItem)
+    arrayItems[0].style.marginLeft = `${-itemWidth}px`
+    setTimeout(()=>{
+        arrayItems[0].removeAttribute('style')
+        // arrayItems[0].style.marginLeft = `0px`
+    },0.1)
 
-    console.log('Next Clicked')
+
 })
 
 // Update the layout ComputedStyle when the window is resized
