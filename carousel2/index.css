@@ -7,7 +7,7 @@
 
 :root {
     --main-font: 'Poppins', sans-serif;
-    --h3-font-size: 48px;
+    --h3-font-size: 32px;
     --span-font-size: 24px;
     --span-color: #E07517;
     --paragraph-font-size: 18px;
@@ -41,7 +41,7 @@ p {
     display: flex;
     position: relative;
 
-    height: 80vh;
+    height: 60vh;
     max-width: 1360px;
 
     margin: auto;
@@ -64,7 +64,7 @@ p {
 }
 
 /* 🟠 Photos > Small */
-.small-photos { 
+.small-photos {
     width: 20%;
     height: 100%;
     /* max-width: 20%; */
