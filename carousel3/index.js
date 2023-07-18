@@ -3,7 +3,7 @@ let divInfos = document.getElementById('infos')
 
 let container = document.getElementById('container')
 let wrapperItems = document.getElementById('wrapper-items')
-let arrayItems = document.getElementsByClassName('list-item')
+let arrayItems = document.getElementsByClassName('carousel-item')
 let secondItemOffsetLeft 
 
 // Nav Btns  <- ->
@@ -21,10 +21,10 @@ function updateContentSize(){
     wrapper-items: ${wrapperItems.offsetWidth},
     items[0]: ${arrayItems[0].offsetWidth}`
    
-    secondItemOffsetLeft = arrayItems[1].offsetLeft - parseInt(getComputedStyle(arrayItems[1]).marginLeft)
+    ItemOffsetLeft = arrayItems[1].offsetLeft - arrayItems[0].offsetLeft
     
     return {
-        secondItemOffsetLeft
+        ItemOffsetLeft
     }
 }
 
@@ -37,26 +37,31 @@ function previousUpdateArrayItems(){
 
     // get the last item in array
     let lastItem = arrayItems.length - 1
+    let lastItemOffSetLeft = lastItem.offsetLeft
     arrayItems[lastItem].after(tempItem)
 
     let marginLeft = parseInt(getComputedStyle(arrayItems[0]).marginLeft)
     arrayItems[lastItem + 1].style.marginLeft = `${marginLeft}px`
     arrayItems[lastItem + 1].classList.remove('UI-fadeOut')
+    console.log('update')
 }
 
 
 // 🎉 Listeners
 previousButton.addEventListener('click', ()=>{
-    let {secondItemOffsetLeft} = updateContentSize()
-    arrayItems[0].style.marginLeft = `${-secondItemOffsetLeft}px`
-
-    setTimeout(previousUpdateArrayItems,300)
+    let {ItemOffsetLeft} = updateContentSize()
+    arrayItems[0].style.marginLeft = `${-ItemOffsetLeft}px`
 
     arrayItems[0].classList.add('UI-fadeOut')
+    setTimeout(previousUpdateArrayItems,300)
+
+
     // arrayItems[lastItem + 1].classList.remove('UI-fadeIn')
 })
 
 nextButton.addEventListener('click',()=>{
+    let {ItemOffsetLeft} = updateContentSize()
+
     console.log('Next Clicked')
 })
 
