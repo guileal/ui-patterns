@@ -7,10 +7,10 @@
 
 :root {
     --main-font: 'Poppins', sans-serif;
-    --h3-font-size: 48px;
-    --span-font-size: 24px;
+    --h3-font-size: 22px;
+    --span-font-size: 22px;
     --span-color: #E07517;
-    --paragraph-font-size: 18px;
+    --paragraph-font-size: 14px;
     --paragraph-color: #3A3D3D;
 }
 
@@ -31,17 +31,18 @@ p {
     font-size: var(--paragraph-font-size);
     /* Convert from pixels to rem */
     color: var(--paragraph-color);
-    line-height: 2rem;
+    line-height: 1.4rem;
 }
 
 /* ⚠️ USE ONLY THE CODE BELOW ⚠️ */
 
 
+
 .carousel-container {
     display: flex;
     position: relative;
-
-    height: 80vh;
+    min-height: 500px;
+    height: 60vh;
     max-width: 1360px;
 
     margin: auto;
@@ -64,26 +65,42 @@ p {
 }
 
 /* 🟠 Photos > Small */
-.small-photos { 
+.small-photos-container {
     width: 20%;
     height: 100%;
     /* max-width: 20%; */
     overflow: hidden scroll;
     z-index: 99;
-
+    cursor: pointer;
 }
 
-.small-photos .img-container {
+
+
+.small-photos-container .img-container {
+    position: relative;
     display: flex;
     align-items: start;
     justify-content: start;
     width: 100%;
     height: 25%;
+    opacity: .7;
+    /* border-radius: 16px; */
     /* max-height: 25%; */
     overflow: hidden;
+    transition: opacity 300ms ease-in-out;
 }
 
-.small-photos .img-container img {
+.small-photos-container .img-container:hover {
+    opacity: 1;
+    transition: opacity 400ms ease-in-out;
+}
+
+.small-photos-container .img-container.c-active {
+    opacity: 1;
+}
+
+
+.small-photos-container .img-container img {
     /* padding-bottom: 0; */
 
     height: 100%;
@@ -91,7 +108,7 @@ p {
     object-fit: cover
 }
 
-/* .small-photos .img-container:not(:first-child) {
+/* .small-photos-container .img-container:not(:first-child) {
     padding-top: 1rem;
 } */
 
@@ -115,14 +132,13 @@ p {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
 /* 🟢 Info Container */
 .info-container {
     padding: 3rem;
     min-width: 50%;
-    border: 1px solid blue;
 }
 
 /* ⚪ Arrows ⬅ ➡️ */

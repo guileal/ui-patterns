@@ -13,43 +13,25 @@
 </head>
 
 <body>
-    <div class="carousel-container no-scrollbar ">
+    <div id="c-container" class="carousel-container no-scrollbar ">
 
         <!-- 🟢🖼️ LIST CONTAINER  -->
-        <div class="photos-container no-scrollbar ">
-            <div class="small-photos">
-                <div class="img-container">
+        <div id="c-small-photos-container" class="photos-container">
+            <div class="small-photos-container">
+                <div class="c-small-photos img-container c-active">
                     <img src="./assets/profile-1.png" alt="Photo 1">
                 </div>
-                <div class="img-container">
+                <div class="c-small-photos img-container">
                     <img src="./assets/profile-2.png" alt="Photo 2">
                 </div>
-                <div class="img-container">
+                <div class="c-small-photos img-container">
                     <img src="./assets/profile-3.png" alt="Photo 3">
                 </div>
-                <div class="img-container">
+                <div class="c-small-photos img-container">
                     <img src="./assets/profile-4.png" alt="Photo 4">
                 </div>
-                <div class="img-container">
-                    <img src="./assets/profile-4.png" alt="Photo 4">
-                </div>
-                <div class="img-container">
-                    <img src="./assets/profile-3.png" alt="Photo 3">
-                </div>
-                <div class="img-container">
-                    <img src="./assets/profile-4.png" alt="Photo 4">
-                </div>
-                <div class="img-container">
-                    <img src="./assets/profile-4.png" alt="Photo 4">
-                </div>
-                <!-- 
-               
-                
-                <img src="./assets/profile-4.png" alt="Photo 4">
-                <img src="./assets/profile-4.png" alt="Photo 4">
-                 -->
             </div>
-            <div class="large-photo">
+            <div id="c-large-photo" class="large-photo">
                 <div class="img-container">
                     <img src="./assets/profile-1.png" alt="Photo 5">
                 </div>
@@ -71,8 +53,7 @@
 
         <!-- 🟢🧭 NAV CONTAINER  -->
         <div class="nav-buttons-container">
-            <button id="previous-button-slider
-            " class="btn">
+            <button id="previous-button-slider" class="btn">
                 <span class="material-icons">chevron_left</span>
             </button>
 
@@ -87,5 +68,6 @@
 
 
 </body>
+<script src="carousel.js"></script>
 
 </html>
