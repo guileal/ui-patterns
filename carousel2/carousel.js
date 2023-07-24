@@ -1,38 +1,55 @@
-let carouselContainer = document.getElementById('c-container')
-let smallPhotos = document.getElementsByClassName('c-small-photos')
+const carouselContainer = document.getElementById('c-container')
+const smallPhotos = document.getElementsByClassName('c-small-photos')
 let largePhoto = document.getElementById('c-large-photo')
 
-let previousButton = document.getElementById('previous-button-slider')
-let nextButton = document.getElementById('next-button-slider')
+const previousButton = document.getElementById('previous-button-slider')
+const nextButton = document.getElementById('next-button-slider')
 
-let currentIndex = 0
+let currentIndex = smallPhotos.length
 let hover = false
 
 
-autoUpdateActiveItem()
+autoplay()
  // 🔥Functions
- function autoUpdateActiveItem(){
+function autoplay(){
     if(!hover){
-        console.log('autoUpdate Online')
-        console.log(currentIndex)
         currentIndex = (currentIndex + 1) % smallPhotos.length
-        setTimeout(autoUpdateActiveItem,1000)
-        return
+        setActiveItem(currentIndex)
+        setTimeout(autoplay,4000)
     }
 }
 
+function setActiveItem(index){
+    smallPhotos[index].classList.add('c-active')
+    for(let i = 0; i < smallPhotos.length; i++){
+        if(i != currentIndex){
+            smallPhotos[i].classList.remove('c-active')
+        }
+    }
+
+    largePhoto.src = smallPhotos[index].src
+}
+
+
+function setActiveItemByClickOnItem(event){
+    const clickedElement = event.currentTarget
+    const clickedIndex = Array.from(smallPhotos).indexOf(clickedElement);
+    
+    if(currentIndex !== clickedIndex){
+        setActiveItem(clickedIndex)
+    }
+}
 
 // 🎉 Listeners
 previousButton.addEventListener('click',()=>{
-    console.log('previous')
+    currentIndex = (currentIndex - 1) % smallPhotos.length
+    setActiveItem(currentIndex)
 })
 
 nextButton.addEventListener('click',()=>{
-    console.log('next')
+    currentIndex = (currentIndex + 1) % smallPhotos.length
+    setActiveItem(currentIndex)
 })
-
-
-
 
 // to hover stops the carousel automatic changes the active item
 carouselContainer.addEventListener('mouseover', ()=>{
@@ -42,7 +59,14 @@ carouselContainer.addEventListener('mouseover', ()=>{
 
 carouselContainer.addEventListener('mouseleave', ()=>{
     hover = false
-    autoUpdateActiveItem()
+    // autoplay()
     console.log('Mouse Leaves')
     console.log(hover)
 })
+
+
+// Iteration to add listener to all smallPhotos
+
+for(let i = 0; i < smallPhotos.length; i++){
+    smallPhotos[i].addEventListener('click', setActiveItemByClickOnItem)
+}
