@@ -1,14 +1,19 @@
+let hover = false
+let autoplayStatus = false 
+
 const carouselContainer = document.getElementById('c-container')
 const smallPhotos = document.getElementsByClassName('c-small-photos')
 
 let smallPhotosLength = smallPhotos.length
-let largePhoto = document.getElementById('c-large-photo')
+const largePhoto = document.getElementById('c-large-photo')
+const infoContainer =  document.getElementById('info-container')
 
 const previousButton = document.getElementById('previous-button-slider')
 const nextButton = document.getElementById('next-button-slider')
 
-let currentIndex = smallPhotosLength
-let hover = false
+let currentIndex = 0
+
+
 
 let autoplayTimeout
 
@@ -18,8 +23,7 @@ let autoplayTimeout
 
  // 🔥Functions
 function autoplay(){
-    console.log(`autoplay current index ${currentIndex}`)
-    if(!hover){
+    if(!hover && autoplayStatus){
         currentIndex = (currentIndex + 1) % smallPhotosLength
         console.log(currentIndex)
         setActiveItem(currentIndex)
@@ -34,17 +38,23 @@ function setActiveItem(index){
             smallPhotos[i].classList.remove('c-active')
         }
     }
+    largePhoto.src = smallPhotos[index].querySelector('img').src
 
-    // largePhoto.src = smallPhotos[index].src
+
+    // to do-> read array
+    let span = infoContainer.querySelector('span')
+    let h3 = infoContainer.querySelector('h3')
+    let p = infoContainer.querySelector('p')
+
+    console.log(span, h3, p)
+
 }
 
 function setActiveItemByClickOnItem(event){
     const clickedElement = event.currentTarget
-    const clickedIndex = Array.from(smallPhotos).indexOf(clickedElement);
-    console.log(clickedIndex)
-    if(currentIndex !== clickedIndex){
-        setActiveItem(clickedIndex)
-    }
+    const clickedItemIndex = Array.from(smallPhotos).indexOf(clickedElement)
+    currentIndex = clickedItemIndex
+    setActiveItem(clickedItemIndex)
 }
 
 
@@ -62,7 +72,6 @@ nextButton.addEventListener('click',()=>{
 // to hover stops the carousel automatic changes the active item
 carouselContainer.addEventListener('mouseover', ()=>{
     hover = true
-    console.log('Mouse Over')
 })
 
 carouselContainer.addEventListener('mouseleave', ()=>{
