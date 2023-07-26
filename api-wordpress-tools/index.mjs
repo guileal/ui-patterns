@@ -1,5 +1,6 @@
+// this code works only in node enviroment
 // 🎯 Input
-const apiURL = 'http://ope-law-firm.local/wp-json/wp/v2/'
+const apiURL = 'https://yoursite.com.br/wp-json/wp/v2/'
 const endpoint = 'posts'
 
 // 🔥Functions
