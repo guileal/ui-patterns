@@ -1,7 +1,7 @@
 // this code works only in node enviroment
 // 🎯 Input
-const apiURL = 'https://yoursite.com.br/wp-json/wp/v2/'
-const endpoint = 'posts'
+const apiURL = 'http://ope-law-firm.local/wp-json/wp/v2/'
+const endpoint = 'advogados'
 
 // 🔥Functions
 export async function getPostsFromWordpressAPI(apiURL, endpoint){
