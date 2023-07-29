@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scroll to Right Carousel</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        /* Styles for the carousel container */
+        .carousel-container {
+            width: 100%;
+            overflow-x: scroll;
+            white-space: nowrap;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0 auto;
+            padding: 10px 0;
+            scroll-behavior: smooth;
+        }
+
+        .disable-scroll-smooth {
+            scroll-behavior: auto;
+
+        }
+
+        /* Styles for each carousel card */
+        .carousel-card {
+            min-width: 300px;
+            height: 200px;
+            margin-right: 10px;
+            background-color: #f0f0f0;
+            display: inline-block;
+            text-align: center;
+            line-height: 200px;
+            font-size: 24px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="carousel-container">
+        <!-- Carousel Cards -->
+        <div class="carousel-card">Card 01</div>
+        <div class="carousel-card">Card 02</div>
+        <div class="carousel-card">Card 03</div>
+        <div class="carousel-card">Card 04</div>
+        <div class="carousel-card">Card 05</div>
+        <div class="carousel-card">Card 06</div>
+        <div class="carousel-card">Card 07</div>
+        <div class="carousel-card">Card 08</div>
+        <div class="carousel-card">Card 09</div>
+        <div class="carousel-card">Card 10</div>
+    </div>
+    <div class="nav-buttons-container">
+        <button id="previous-button-slider" class="btn">
+            <span class="material-icons">chevron_left</span>
+        </button>
+
+        <button id="next-button-slider" class="btn">
+            <span class="material-icons">chevron_right</span>
+        </button>
+    </div>
+
+    <script>
+        // Carousel
+        const carouselContainer = document.querySelector('.carousel-container');
+        const carouselChildClassName = 'carousel-card'
+
+        // Nav
+        const previousButton = document.getElementById('previous-button-slider')
+        const nextButton = document.getElementById('next-button-slider')
+
+        carouselContainer.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            const scrollDistance = event.deltaY;
+            carouselContainer.classList.add('disable-scroll-smooth')
+            carouselContainer.scrollLeft += scrollDistance;
+            carouselContainer.classList.remove('disable-scroll-smooth')
+
+        });
+
+        previousButton.addEventListener('click', () => {
+            let amountCards = carouselContainer.querySelectorAll(`.${carouselChildClassName}`).length
+            let carouselScrollWidth = carouselContainer.scrollWidth
+            let cardWidthWithMargin = carouselScrollWidth / amountCards
+
+            if (carouselContainer.scrollLeft !== 0) {
+                carouselContainer.scrollLeft += - 1 * cardWidthWithMargin
+                return
+            }
+            carouselContainer.scrollLeft = carouselScrollWidth
+        })
+
+        nextButton.addEventListener('click', () => {
+            let amountCards = carouselContainer.querySelectorAll(`.${carouselChildClassName}`).length
+            let carouselScrollWidth = carouselContainer.scrollWidth
+            let cardWidthWithMargin = carouselScrollWidth / amountCards
+
+            let scrollLeft = carouselContainer.scrollLeft
+
+            console.log(`--------------------------------`)
+            console.log(`Scroll Left ${scrollLeft}`)
+            console.log(`--------------------------------`)
+            if (carouselContainer.scrollLeft !== (carouselScrollWidth - carouselContainer.clientWidth)) {
+                scrollLeft = carouselContainer.scrollLeft += cardWidthWithMargin
+                return
+            }
+            carouselContainer.scrollLeft = 0
+        })
+
+
+
+    </script>
+</body>
+
+</html>
